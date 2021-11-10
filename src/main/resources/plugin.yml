@@ -1,0 +1,6 @@
+main: me.TurtlesAreHot.BendingOnly.Main
+name: BendingOnly
+version: 1.0.0
+description: This plugin only allows you to use bending for combat in a certain world.
+author: TurtlesAreHot
+api-version: 1.13
