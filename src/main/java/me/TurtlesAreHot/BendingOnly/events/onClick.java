@@ -10,7 +10,7 @@ public class onClick implements Listener {
     @EventHandler
     public void onPlayerClick(PlayerInteractEvent e) {
         if(e.getPlayer().getWorld().getName().equalsIgnoreCase(Config.getWorld())) {
-            
+
         }
     }
 }

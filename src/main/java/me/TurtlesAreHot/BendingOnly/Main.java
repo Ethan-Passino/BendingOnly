@@ -1,5 +1,6 @@
 package me.TurtlesAreHot.BendingOnly;
 
+import me.TurtlesAreHot.BendingOnly.events.onBlock;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -9,47 +10,34 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends JavaPlugin {
 
-    private File customConfigFile;
-    private static FileConfiguration customConfig;
-    private static File dataFolder;
-
     @Override
     public void onEnable() {
-        createCustomConfig();
-        dataFolder = getDataFolder();
+        this.saveDefaultConfig(); // Creates config.yml
+        FileConfiguration config = this.getConfig();
+        List<String> deniedBlocks = new ArrayList<>();
+        deniedBlocks.add("SOUL_SAND");
+        deniedBlocks.add("TNT");
+        List<String> deniedWeapons = new ArrayList<>();
+        deniedWeapons.add("DIAMOND_SWORD");
+        deniedWeapons.add("GOLD_SWORD");
+        config.addDefault("world", "bending");
+        config.addDefault("denied-blocks", deniedBlocks);
+        config.addDefault("denied-weapons", deniedWeapons);
+        config.options().copyDefaults(true);
+        this.saveConfig();
+        Config.reloadConfig();
+        getCommand("boreload").setExecutor(new Reload());
+        this.getServer().getPluginManager().registerEvents(new onBlock(), this);
     }
 
     @Override
     public void onDisable() {
 
-    }
-
-    public static FileConfiguration getCustomConfig() { return customConfig; }
-
-    public void createCustomConfig() {
-        customConfigFile = new File(getDataFolder(), "config.yml");
-        if(!customConfigFile.exists()) {
-            customConfigFile.getParentFile().mkdirs();
-            saveResource("config.yml", false);
-        }
-
-        try {
-            PrintWriter pw = new PrintWriter(customConfigFile);
-            pw.println("world: \"bending\"");
-            pw.close();
-        } catch(FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        customConfig = new YamlConfiguration();
-        try {
-            customConfig.load(customConfigFile);
-        } catch(IOException | InvalidConfigurationException e) {
-            e.printStackTrace();
-        }
     }
 
 }
