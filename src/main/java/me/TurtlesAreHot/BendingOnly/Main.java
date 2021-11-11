@@ -1,5 +1,6 @@
 package me.TurtlesAreHot.BendingOnly;
 
+import me.TurtlesAreHot.BendingOnly.events.bucketEvent;
 import me.TurtlesAreHot.BendingOnly.events.onBlock;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -27,6 +28,7 @@ public class Main extends JavaPlugin {
         Config.reloadConfig();
         getCommand("boreload").setExecutor(new Reload());
         this.getServer().getPluginManager().registerEvents(new onBlock(), this);
+        this.getServer().getPluginManager().registerEvents(new bucketEvent(), this);
     }
 
     @Override
