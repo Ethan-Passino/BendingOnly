@@ -49,6 +49,7 @@ public class Main extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new onEntitySpawn(), this);
         this.getServer().getPluginManager().registerEvents(new onWorldChange(), this);
         this.getServer().getPluginManager().registerEvents(new onItemMove(), this);
+        this.getServer().getPluginManager().registerEvents(new onItemPickup(), this);
     }
 
     @Override
