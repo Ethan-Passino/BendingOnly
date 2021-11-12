@@ -31,4 +31,6 @@ public class Config {
     public static List<String> getDeniedRightClick() { return config.getStringList("no-rightclick"); }
 
     public static boolean mobSpawning() { return config.getBoolean("mob-spawning"); }
+
+    public static boolean isArmorAllowed() { return config.getBoolean("allow-armor"); }
 }

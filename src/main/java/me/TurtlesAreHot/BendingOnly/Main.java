@@ -32,6 +32,7 @@ public class Main extends JavaPlugin {
         config.addDefault("allow-rod", false);
         config.addDefault("no-rightclick", noRightClicks);
         config.addDefault("mob-spawning", false);
+        config.addDefault("allow-armor", false);
         config.options().copyDefaults(true);
         this.saveConfig();
         Config.reloadConfig();
@@ -46,6 +47,7 @@ public class Main extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new onClick(), this);
         this.getServer().getPluginManager().registerEvents(new onEntityDamage(), this);
         this.getServer().getPluginManager().registerEvents(new onEntitySpawn(), this);
+        this.getServer().getPluginManager().registerEvents(new onWorldChange(), this);
     }
 
     @Override
