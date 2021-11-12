@@ -1,7 +1,6 @@
 package me.TurtlesAreHot.BendingOnly;
 
-import me.TurtlesAreHot.BendingOnly.events.bucketEvent;
-import me.TurtlesAreHot.BendingOnly.events.onBlock;
+import me.TurtlesAreHot.BendingOnly.events.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -15,20 +14,35 @@ public class Main extends JavaPlugin {
         this.saveDefaultConfig(); // Creates config.yml
         FileConfiguration config = this.getConfig();
         List<String> deniedBlocks = new ArrayList<>();
+        List<String> deniedWeapons = new ArrayList<>();
+        List<String> noRightClicks = new ArrayList<>();
         deniedBlocks.add("SOUL_SAND");
         deniedBlocks.add("TNT");
-        List<String> deniedWeapons = new ArrayList<>();
         deniedWeapons.add("DIAMOND_SWORD");
         deniedWeapons.add("GOLD_SWORD");
+        noRightClicks.add("OAK_BOAT");
+        noRightClicks.add("STRING");
         config.addDefault("world", "bending");
         config.addDefault("denied-blocks", deniedBlocks);
         config.addDefault("denied-weapons", deniedWeapons);
+        config.addDefault("can-throw-potions", false);
+        config.addDefault("allow-bows", false);
+        config.addDefault("allow-projectiles", false);
+        config.addDefault("allow-consume", false);
+        config.addDefault("allow-rod", false);
+        config.addDefault("no-rightclick", noRightClicks);
         config.options().copyDefaults(true);
         this.saveConfig();
         Config.reloadConfig();
         getCommand("boreload").setExecutor(new Reload());
         this.getServer().getPluginManager().registerEvents(new onBlock(), this);
         this.getServer().getPluginManager().registerEvents(new bucketEvent(), this);
+        this.getServer().getPluginManager().registerEvents(new onPotionSplash(), this);
+        this.getServer().getPluginManager().registerEvents(new onBowShoot(), this);
+        this.getServer().getPluginManager().registerEvents(new onProjectile(), this);
+        this.getServer().getPluginManager().registerEvents(new onItemConsume(), this);
+        this.getServer().getPluginManager().registerEvents(new onFish(), this);
+        this.getServer().getPluginManager().registerEvents(new onClick(), this);
     }
 
     @Override

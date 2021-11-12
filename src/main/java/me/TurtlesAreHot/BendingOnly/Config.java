@@ -17,4 +17,17 @@ public class Config {
     public static List<String> getDeniedBlocks() { return config.getStringList("denied-blocks"); }
 
     public static List<String> getDeniedWeapons() { return config.getStringList("denied-weapons"); }
+
+    public static boolean canThrowPotions() { return config.getBoolean("can-throw-potions"); }
+
+    public static boolean isBowAllowed() { return config.getBoolean("allow-bows"); }
+
+    public static boolean isProjectilesAllowed() { return config.getBoolean("allow-projectiles"); }
+
+    public static boolean isConsumingAllowed() { return config.getBoolean("allow-consume"); }
+
+    public static boolean isRodAllowed() { return config.getBoolean("allow-rod"); }
+
+    public static List<String> getDeniedRightClick() { return config.getStringList("no-rightclick"); }
+
 }
