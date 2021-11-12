@@ -31,6 +31,7 @@ public class Main extends JavaPlugin {
         config.addDefault("allow-consume", false);
         config.addDefault("allow-rod", false);
         config.addDefault("no-rightclick", noRightClicks);
+        config.addDefault("mob-spawning", false);
         config.options().copyDefaults(true);
         this.saveConfig();
         Config.reloadConfig();
@@ -43,6 +44,8 @@ public class Main extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new onItemConsume(), this);
         this.getServer().getPluginManager().registerEvents(new onFish(), this);
         this.getServer().getPluginManager().registerEvents(new onClick(), this);
+        this.getServer().getPluginManager().registerEvents(new onEntityDamage(), this);
+        this.getServer().getPluginManager().registerEvents(new onEntitySpawn(), this);
     }
 
     @Override
