@@ -17,9 +17,11 @@ public class onItemMove implements Listener {
         if(p.getWorld().getName().equalsIgnoreCase(Config.getWorld())) {
             if(e.getCursor() != null && !(Config.isArmorAllowed())) {
                 if(e.getClick().isShiftClick()) {
-                    if(isArmor(e.getCurrentItem().getType())) {
-                        p.sendMessage(ChatColor.RED + "You cannot equip/move armor in this world. Go to /spawn to do this.");
-                        e.setCancelled(true);
+                    if(e.getCurrentItem() != null) {
+                        if (isArmor(e.getCurrentItem().getType())) {
+                            p.sendMessage(ChatColor.RED + "You cannot equip/move armor in this world. Go to /spawn to do this.");
+                            e.setCancelled(true);
+                        }
                     }
                 }
                 if(isArmor(e.getCursor().getType())) {
