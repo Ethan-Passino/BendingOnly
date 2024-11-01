@@ -12,6 +12,7 @@
 - 🖥️ **Minecraft Server**: Bukkit or Spigot
 - ☕ **Java 8 or higher**
 - 📦 **Bukkit/Spigot API**: Version compatible with the Minecraft server
+- 🌌 **ProjectKorra Plugin**: Required to enable and manage bending mechanics
 
 ## 📥 Installation
 1. 🔗 Download the plugin's latest `.jar` file from the releases.
